@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0.0",
+  "view": "sequence",
+  "revision": "801d444ce7a22e9479eb64733f85a916",
+  "graph_version": 1,
+  "generated_at_ms": 1786464383980,
+  "graph": {
+    "schema_version": 1,
+    "id": "pir_cough_capture-sequence",
+    "name": "cough_capture topology — Sequence",
+    "description": "Execution and initialization order",
+    "nodes": [
+      {
+        "id": "boot",
+        "node_type": "system_init",
+        "label": "1. Boot / app_main",
+        "description": "Bootstraps firmware startup and initializes core subsystems.",
+        "ports": [
+          {
+            "id": "boot::in",
+            "name": "in",
+            "direction": "input",
+            "datatype": "any",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "boot::out",
+            "name": "out",
+            "direction": "output",
+            "datatype": "any",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "target": "esp32c3"
+        },
+        "execution": {},
+        "visual": {
+          "x": 0.0,
+          "y": 80.0,
+          "layer": 0
+        }
+      },
+      {
+        "id": "logger",
+        "node_type": "logger",
+        "label": "2. Logger",
+        "description": "Emits structured runtime logs for diagnostics.",
+        "ports": [
+          {
+            "id": "logger::in",
+            "name": "in",
+            "direction": "input",
+            "datatype": "any",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "logger::out",
+            "name": "out",
+            "direction": "output",
+            "datatype": "any",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "tag": "APP",
+          "level": "info"
+        },
+        "execution": {},
+        "visual": {
+          "x": 320.0,
+          "y": 80.0,
+          "layer": 1
+        }
+      }
+    ],
+    "connections": [
+      [
+        "boot::out",
+        "logger::in"
+      ]
+    ],
+    "layout": {
+      "orientation": "horizontal",
+      "node_width": 0.0,
+      "layer_gap": 0.0,
+      "node_gap": 0.0
+    }
+  },
+  "mermaid": "sequenceDiagram\n    participant boot as 1. Boot / app_main\n    participant logger as 2. Logger\n    boot->>logger: initializes",
+  "title": "Boot to application start sequence"
+}

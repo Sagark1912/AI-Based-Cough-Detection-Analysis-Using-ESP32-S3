@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0.0",
+  "view": "wiring",
+  "revision": "801d444ce7a22e9479eb64733f85a916",
+  "graph_version": 1,
+  "generated_at_ms": 1786464383977,
+  "graph": {
+    "schema_version": 1,
+    "id": "pir_cough_capture",
+    "name": "cough_capture topology",
+    "description": "Linked boot to app_start() and refreshed required sequence diagram; GPIO/tasks remain unobserved in provided snippets.",
+    "nodes": [
+      {
+        "id": "boot",
+        "node_type": "system_init",
+        "label": "Boot / app_main",
+        "description": "Bootstraps firmware startup and initializes core subsystems.",
+        "ports": [
+          {
+            "id": "boot_boot_out_0",
+            "name": "boot_out",
+            "direction": "output",
+            "datatype": "execution",
+            "required": true,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "target": "esp32c3"
+        },
+        "execution": {},
+        "visual": {
+          "x": 0.0,
+          "y": -100.0,
+          "layer": 0
+        }
+      },
+      {
+        "id": "logger",
+        "node_type": "logger",
+        "label": "Logger",
+        "description": "Emits structured runtime logs for diagnostics.",
+        "ports": [
+          {
+            "id": "logger_data_in_0",
+            "name": "data_in",
+            "direction": "input",
+            "datatype": "signal",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "logger_exec_in_1",
+            "name": "exec_in",
+            "direction": "input",
+            "datatype": "execution",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "tag": "APP",
+          "level": "info"
+        },
+        "execution": {},
+        "visual": {
+          "x": 0.0,
+          "y": -100.0,
+          "layer": 1
+        }
+      }
+    ],
+    "connections": [
+      [
+        "boot_boot_out_0",
+        "logger_exec_in_1"
+      ]
+    ],
+    "layout": {
+      "orientation": "",
+      "node_width": 0.0,
+      "layer_gap": 0.0,
+      "node_gap": 0.0
+    }
+  },
+  "title": "Wiring Topology"
+}

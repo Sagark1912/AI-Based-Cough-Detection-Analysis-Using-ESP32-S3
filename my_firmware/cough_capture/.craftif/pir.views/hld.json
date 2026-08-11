@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0.0",
+  "view": "hld",
+  "revision": "801d444ce7a22e9479eb64733f85a916",
+  "graph_version": 1,
+  "generated_at_ms": 1786464383978,
+  "graph": {
+    "schema_version": 1,
+    "id": "pir_cough_capture-hld",
+    "name": "cough_capture topology — HLD",
+    "description": "High-level architecture — MCU controller, firmware modules, and integrations",
+    "nodes": [
+      {
+        "id": "hld_esp32",
+        "node_type": "system_init",
+        "label": "ESP32 Main Controller",
+        "description": "Main firmware control node coordinating peripherals, storage, and connectivity.",
+        "ports": [
+          {
+            "id": "hld_esp32::hld::in",
+            "name": "assoc_in",
+            "direction": "input",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "hld_esp32::hld::out",
+            "name": "assoc_out",
+            "direction": "output",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "hld_role": "controller"
+        },
+        "visual": {
+          "x": 0.0,
+          "y": -100.0,
+          "layer": 0
+        }
+      },
+      {
+        "id": "hld_logger",
+        "node_type": "logger",
+        "label": "Logger",
+        "description": "Emits structured runtime logs for diagnostics.",
+        "ports": [
+          {
+            "id": "hld_logger::hld::in",
+            "name": "assoc_in",
+            "direction": "input",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "hld_logger::hld::out",
+            "name": "assoc_out",
+            "direction": "output",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "tag": "APP",
+          "level": "info",
+          "hld_role": "runtime",
+          "source_node_id": "logger"
+        },
+        "execution": {},
+        "visual": {
+          "x": 430.0,
+          "y": -100.0,
+          "layer": 1
+        }
+      }
+    ],
+    "connections": [
+      [
+        "hld_esp32::hld::out",
+        "hld_logger::hld::in"
+      ]
+    ],
+    "layout": {
+      "orientation": "horizontal",
+      "node_width": 280.0,
+      "layer_gap": 150.0,
+      "node_gap": 64.0
+    },
+    "runtime_metadata": {
+      "telemetry_enabled": false,
+      "overlays": {
+        "hld_projection": "architecture",
+        "hld_edge_labels": {
+          "hld_esp32::hld::out|hld_logger::hld::in": "Firmware Logic"
+        },
+        "diagram_view": "hld"
+      }
+    }
+  },
+  "mermaid": "graph TD\n    hld_esp32[\"ESP32 Main Controller\"]\n    hld_logger[\"Logger\"]\n    hld_esp32 -->|Firmware Logic| hld_logger",
+  "title": "Firmware entry and app module"
+}

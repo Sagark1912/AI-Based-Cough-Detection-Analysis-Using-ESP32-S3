@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "view": "lld",
+  "revision": "801d444ce7a22e9479eb64733f85a916",
+  "graph_version": 1,
+  "generated_at_ms": 1786464383979,
+  "graph": {
+    "schema_version": 1,
+    "id": "pir_cough_capture-lld",
+    "name": "cough_capture topology — LLD",
+    "description": "Low-level design — FreeRTOS and peripheral/service workflow",
+    "nodes": [
+      {
+        "id": "logger",
+        "node_type": "logger",
+        "label": "Logger",
+        "description": "Emits structured runtime logs for diagnostics.",
+        "ports": [
+          {
+            "id": "logger::ldd::in",
+            "name": "assoc_in",
+            "direction": "input",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "logger::ldd::out",
+            "name": "assoc_out",
+            "direction": "output",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "tag": "APP",
+          "level": "info",
+          "lld_workflow": {
+            "role": "service",
+            "node_type": "logger"
+          }
+        },
+        "execution": {},
+        "visual": {
+          "x": -140.0,
+          "y": 0.0,
+          "layer": 0
+        }
+      }
+    ],
+    "connections": [],
+    "layout": {
+      "orientation": "vertical",
+      "node_width": 280.0,
+      "layer_gap": 120.0,
+      "node_gap": 48.0
+    },
+    "runtime_metadata": {
+      "telemetry_enabled": false,
+      "overlays": {
+        "diagram_view": "ldd",
+        "ldd_edge_labels": {}
+      }
+    }
+  },
+  "mermaid": "flowchart TD\n  logger[\"Logger\"]",
+  "title": "Startup control flow"
+}

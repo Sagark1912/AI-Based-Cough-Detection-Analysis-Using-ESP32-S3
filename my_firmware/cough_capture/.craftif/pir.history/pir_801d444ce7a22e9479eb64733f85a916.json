@@ -1,0 +1,503 @@
+{
+  "schema_version": "2.0.0",
+  "id": "pir_cough_capture",
+  "revision": "801d444ce7a22e9479eb64733f85a916",
+  "provenance": {
+    "project_path": "C:\\Users\\Sagar K\\Downloads\\code_audio_classification\\code\\code\\my_firmware\\cough_capture",
+    "chat_id": "69ec8e15-63e1-4fcc-bd88-da85e71396d5",
+    "revision": "801d444ce7a22e9479eb64733f85a916",
+    "generated_at_ms": 1786464369613,
+    "analyzer_version": "pir_maker-static-0.2.0",
+    "analyzed_files": [
+      "CMakeLists.txt",
+      "firmware/app/app.c",
+      "firmware/app/app.h",
+      "firmware/configs/app_config.h",
+      "firmware/configs/build_config.h",
+      "firmware/configs/platform_config.h",
+      "firmware/utils/helpers/helpers.c",
+      "firmware/utils/helpers/helpers.h",
+      "firmware/utils/logger/logger.c",
+      "firmware/utils/logger/logger.h",
+      "main/CMakeLists.txt",
+      "main/entry.c",
+      "main/firmgen_sources.cmake",
+      "main/idf_component.yml",
+      "sdkconfig",
+      "sdkconfig.defaults"
+    ],
+    "file_hashes": {
+      "CMakeLists.txt": "466138268d571fe714b1edec695d290c",
+      "firmware/app/app.c": "6de318e73f38c75aa291216cc7c0b9cc",
+      "sdkconfig.defaults": "bb2b229b3fb1b8cd16dcf6927e49300a",
+      "firmware/configs/app_config.h": "61b537b868517e7fba4c00fe324b3380",
+      "main/entry.c": "86aaa3bc61772628c601798f4d9dea56",
+      "firmware/configs/platform_config.h": "010b01144dbd2d3fb63f3053b158ab7a",
+      "firmware/utils/logger/logger.h": "2c284c641c88c6a4fff52db62e8d1ea5",
+      "firmware/utils/helpers/helpers.h": "ec8b635b7e5b55f8aeb8f47c3ff34312",
+      "firmware/utils/logger/logger.c": "8e992fef35c9a4678ec38e60902d741d",
+      "main/idf_component.yml": "5244a698a75205452ad69f895a07b6a1",
+      "firmware/utils/helpers/helpers.c": "914568ab7415fec17e74f306cbb5ae09",
+      "main/firmgen_sources.cmake": "d0d7775936bf3dd66156bb29aaadaca4",
+      "firmware/app/app.h": "bc88844840b4c743283b026f851e00f0",
+      "main/CMakeLists.txt": "0270a2eabf62ffbebb578ae1ec286d6c",
+      "sdkconfig": "3eb3cb817d0865b8d472844700a4224c",
+      "firmware/configs/build_config.h": "dd997e9a0a461df28c370a61963fd7e5"
+    }
+  },
+  "approval": {
+    "status": "pending"
+  },
+  "nodes": [
+    {
+      "id": "boot",
+      "node_type": "system_init",
+      "label": "Boot / app_main",
+      "properties": {
+        "target": "esp32c3"
+      },
+      "source_refs": [
+        {
+          "file": "main/entry.c",
+          "confidence": 1.0,
+          "inferred_by": "static"
+        }
+      ],
+      "sync": {
+        "state": "synced",
+        "last_synced_revision": "801d444ce7a22e9479eb64733f85a916"
+      },
+      "ownership": {
+        "primary_files": [
+          "main/entry.c"
+        ]
+      },
+      "editable_fields": [
+        "target"
+      ],
+      "layer": "system",
+      "ai_summary": "Bootstraps firmware startup and initializes core subsystems.",
+      "confidence": 1.0,
+      "authority": "agent",
+      "semantic_tags": [],
+      "dependencies": []
+    },
+    {
+      "id": "logger",
+      "node_type": "logger",
+      "label": "Logger",
+      "properties": {
+        "tag": "APP",
+        "level": "info"
+      },
+      "source_refs": [
+        {
+          "file": "firmware/app/app.c",
+          "confidence": 1.0,
+          "inferred_by": "static"
+        }
+      ],
+      "sync": {
+        "state": "synced",
+        "last_synced_revision": "801d444ce7a22e9479eb64733f85a916"
+      },
+      "ownership": {
+        "primary_files": [
+          "firmware/app/app.c"
+        ]
+      },
+      "editable_fields": [
+        "tag",
+        "level"
+      ],
+      "layer": "system",
+      "ai_summary": "Emits structured runtime logs for diagnostics.",
+      "confidence": 1.0,
+      "authority": "agent",
+      "semantic_tags": [],
+      "dependencies": []
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_boot_logger",
+      "source_node_id": "boot",
+      "target_node_id": "logger",
+      "source_port_id": "boot_boot_out_0",
+      "target_port_id": "logger_exec_in_1",
+      "kind": "execution",
+      "confidence": 0.9,
+      "source_refs": [],
+      "semantic_label": "initializes",
+      "validated": false
+    }
+  ],
+  "layers": {
+    "physical": [],
+    "runtime": [],
+    "network": [],
+    "system": [
+      "boot",
+      "logger"
+    ]
+  },
+  "partitions": [],
+  "components": [
+    {
+      "id": "main",
+      "path": "main/CMakeLists.txt",
+      "requires": [
+        "esp_driver_gpio",
+        "esp_timer",
+        "esp_wifi",
+        "esp_event",
+        "nvs_flash",
+        "freertos",
+        "log"
+      ],
+      "source_files": []
+    }
+  ],
+  "summary": {
+    "headline": "Linked boot to app_start() and refreshed required sequence diagram; GPIO/tasks remain unobserved in provided snippets.",
+    "node_count": 0,
+    "edge_count": 0,
+    "warnings": []
+  },
+  "diagrams": {
+    "hld": {
+      "title": "Firmware entry and app module",
+      "mermaid": "graph TD\n    hld_esp32[\"ESP32 Main Controller\"]\n    hld_logger[\"Logger\"]\n    hld_esp32 -->|Firmware Logic| hld_logger"
+    },
+    "lld": {
+      "title": "Startup control flow",
+      "mermaid": "flowchart TD\n  logger[\"Logger\"]"
+    },
+    "sequence": {
+      "title": "Boot to application start sequence",
+      "mermaid": "sequenceDiagram\n    participant boot as 1. Boot / app_main\n    participant logger as 2. Logger\n    boot->>logger: initializes",
+      "participants": [
+        "boot",
+        "logger"
+      ],
+      "generated_from": [
+        "main/entry.c",
+        "firmware/app/app.c",
+        "firmware/app/app.h"
+      ]
+    },
+    "hld_graph": {
+      "schema_version": 1,
+      "id": "pir_cough_capture-hld",
+      "name": "cough_capture topology — HLD",
+      "description": "High-level architecture — MCU controller, firmware modules, and integrations",
+      "nodes": [
+        {
+          "id": "hld_esp32",
+          "node_type": "system_init",
+          "label": "ESP32 Main Controller",
+          "description": "Main firmware control node coordinating peripherals, storage, and connectivity.",
+          "ports": [
+            {
+              "id": "hld_esp32::hld::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "hld_esp32::hld::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "hld_role": "controller"
+          },
+          "visual": {
+            "x": 0.0,
+            "y": -100.0,
+            "layer": 0
+          }
+        },
+        {
+          "id": "hld_logger",
+          "node_type": "logger",
+          "label": "Logger",
+          "description": "Emits structured runtime logs for diagnostics.",
+          "ports": [
+            {
+              "id": "hld_logger::hld::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "hld_logger::hld::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "tag": "APP",
+            "level": "info",
+            "hld_role": "runtime",
+            "source_node_id": "logger"
+          },
+          "execution": {},
+          "visual": {
+            "x": 430.0,
+            "y": -100.0,
+            "layer": 1
+          }
+        }
+      ],
+      "connections": [
+        [
+          "hld_esp32::hld::out",
+          "hld_logger::hld::in"
+        ]
+      ],
+      "layout": {
+        "orientation": "horizontal",
+        "node_width": 280.0,
+        "layer_gap": 150.0,
+        "node_gap": 64.0
+      },
+      "runtime_metadata": {
+        "telemetry_enabled": false,
+        "overlays": {
+          "hld_projection": "architecture",
+          "hld_edge_labels": {
+            "hld_esp32::hld::out|hld_logger::hld::in": "Firmware Logic"
+          },
+          "diagram_view": "hld"
+        }
+      }
+    },
+    "lld_graph": {
+      "schema_version": 1,
+      "id": "pir_cough_capture-lld",
+      "name": "cough_capture topology — LLD",
+      "description": "Low-level design — FreeRTOS and peripheral/service workflow",
+      "nodes": [
+        {
+          "id": "logger",
+          "node_type": "logger",
+          "label": "Logger",
+          "description": "Emits structured runtime logs for diagnostics.",
+          "ports": [
+            {
+              "id": "logger::ldd::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "logger::ldd::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "tag": "APP",
+            "level": "info",
+            "lld_workflow": {
+              "role": "service",
+              "node_type": "logger"
+            }
+          },
+          "execution": {},
+          "visual": {
+            "x": -140.0,
+            "y": 0.0,
+            "layer": 0
+          }
+        }
+      ],
+      "connections": [],
+      "layout": {
+        "orientation": "vertical",
+        "node_width": 280.0,
+        "layer_gap": 120.0,
+        "node_gap": 48.0
+      },
+      "runtime_metadata": {
+        "telemetry_enabled": false,
+        "overlays": {
+          "diagram_view": "ldd",
+          "ldd_edge_labels": {}
+        }
+      }
+    },
+    "sequence_graph": {
+      "schema_version": 1,
+      "id": "pir_cough_capture-sequence",
+      "name": "cough_capture topology — Sequence",
+      "description": "Execution and initialization order",
+      "nodes": [
+        {
+          "id": "boot",
+          "node_type": "system_init",
+          "label": "1. Boot / app_main",
+          "description": "Bootstraps firmware startup and initializes core subsystems.",
+          "ports": [
+            {
+              "id": "boot::in",
+              "name": "in",
+              "direction": "input",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "boot::out",
+              "name": "out",
+              "direction": "output",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "target": "esp32c3"
+          },
+          "execution": {},
+          "visual": {
+            "x": 0.0,
+            "y": 80.0,
+            "layer": 0
+          }
+        },
+        {
+          "id": "logger",
+          "node_type": "logger",
+          "label": "2. Logger",
+          "description": "Emits structured runtime logs for diagnostics.",
+          "ports": [
+            {
+              "id": "logger::in",
+              "name": "in",
+              "direction": "input",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "logger::out",
+              "name": "out",
+              "direction": "output",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "tag": "APP",
+            "level": "info"
+          },
+          "execution": {},
+          "visual": {
+            "x": 320.0,
+            "y": 80.0,
+            "layer": 1
+          }
+        }
+      ],
+      "connections": [
+        [
+          "boot::out",
+          "logger::in"
+        ]
+      ],
+      "layout": {
+        "orientation": "horizontal",
+        "node_width": 0.0,
+        "layer_gap": 0.0,
+        "node_gap": 0.0
+      }
+    }
+  },
+  "change_log": [],
+  "unresolved": [
+    {
+      "kind": "sparse_extraction",
+      "message": "No GPIO/tasks/peripherals evidenced in provided snippets; need firmware/app/app.c contents beyond symbol presence.",
+      "file": "firmware/app/app.c"
+    },
+    {
+      "kind": "llm_node_rejected",
+      "message": "Rejected refine node app_startup (system_init) because it has no file-backed evidence",
+      "node_id": "app_startup",
+      "node_type": "system_init",
+      "strict_evidence": true
+    },
+    {
+      "kind": "llm_edge_rejected",
+      "message": "Rejected refine edge edge_boot_calls_app_startup_0 because source/target nodes are not evidence-backed",
+      "edge_id": "edge_boot_calls_app_startup_0",
+      "strict_evidence": true
+    },
+    {
+      "kind": "llm_edge_rejected",
+      "message": "Rejected refine edge edge_app_startup_uses_logger_0 because source/target nodes are not evidence-backed",
+      "edge_id": "edge_app_startup_uses_logger_0",
+      "strict_evidence": true
+    }
+  ],
+  "read_only": false,
+  "graph_version": 1,
+  "generation": {
+    "mode": "hybrid_refine",
+    "model": "local_openai_proxy/gpt-5.2",
+    "triggered_by": "mount",
+    "analyzed_at_ms": 1786464383961,
+    "input_files": [
+      "CMakeLists.txt",
+      "firmware/app/app.c",
+      "firmware/app/app.h",
+      "firmware/configs/app_config.h",
+      "firmware/configs/build_config.h",
+      "firmware/configs/platform_config.h",
+      "firmware/utils/helpers/helpers.c",
+      "firmware/utils/helpers/helpers.h",
+      "firmware/utils/logger/logger.c",
+      "firmware/utils/logger/logger.h",
+      "main/CMakeLists.txt",
+      "main/entry.c",
+      "main/firmgen_sources.cmake",
+      "main/idf_component.yml",
+      "sdkconfig",
+      "sdkconfig.defaults"
+    ],
+    "token_usage": {
+      "prompt_tokens": 2542,
+      "completion_tokens": 800
+    }
+  },
+  "sync_metadata": {
+    "project_file": "",
+    "content_hash": "",
+    "pending_patches": []
+  },
+  "validation_state": {
+    "valid": true,
+    "error_count": 0,
+    "warning_count": 0,
+    "validated_at_ms": 1786464383968
+  }
+}
