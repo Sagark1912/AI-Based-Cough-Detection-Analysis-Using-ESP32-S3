@@ -7,6 +7,7 @@ set(APP_SOURCES
     "${FW_ROOT}/app/app.c"
     "${FW_ROOT}/utils/helpers/helpers.c"
     "${FW_ROOT}/utils/logger/logger.c"
+    "${FW_ROOT}/platforms/esp32/audio_capture.c"
 )
 
 set(FW_INCLUDE_DIRS
@@ -15,4 +16,5 @@ set(FW_INCLUDE_DIRS
     "${FW_ROOT}/configs"
     "${FW_ROOT}/utils/helpers"
     "${FW_ROOT}/utils/logger"
+    "${FW_ROOT}/platforms/esp32"
 )
